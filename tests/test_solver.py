@@ -4,7 +4,6 @@ from timesyncsolver.solver import Teachers, Subjects, TimeSlots, Solver
 
 class TestSolver(unittest.TestCase):
     def test_teachers(self):
-
         teachers = Teachers()
         teachers.add(['Bob', 'Jill', 'Tim', 'Ben'])
         self.assertEqual(len(teachers.store), 4)
