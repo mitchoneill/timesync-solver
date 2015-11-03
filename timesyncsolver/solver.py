@@ -1,4 +1,4 @@
-import Numberjack as NJ
+import Numberjack as Nj
 
 
 class Teachers(object):
@@ -45,7 +45,8 @@ class TimeSlots(object):
 class Solver(object):
     def __init__(self, teachers, subjects, timeslots):
         if timeslots.store < len(teachers.store):
-            raise ValueError('unable to solve for more teachers than timeslots')
+            raise ValueError('unable to solve for more teachers '
+                             'than timeslots')
 
         self.teachers = teachers.store
         self.subjects = subjects.store
@@ -56,13 +57,13 @@ class Solver(object):
         self.solution = None
 
     def solve(self):
-        self.matrix = NJ.Matrix(len(self.subjects),
+        self.matrix = Nj.Matrix(len(self.subjects),
                                 self.timeslots,
                                 len(self.teachers)+1)
 
-        self.model = NJ.Model(
-            [NJ.AllDiffExcept0(row) for row in self.matrix.row],
-            [NJ.AllDiffExcept0(col) for col in self.matrix.col]
+        self.model = Nj.Model(
+            [Nj.AllDiffExcept0(row) for row in self.matrix.row],
+            [Nj.AllDiffExcept0(col) for col in self.matrix.col]
         )
 
         self.solver = self.model.load('Mistral')
