@@ -57,13 +57,16 @@ class Solver(object):
         self.solution = None
 
     def solve(self):
+        cards = dict(zip(range(1, len(self.teachers)+1), [(1, 1) for teacher in self.teachers]))
         self.matrix = Nj.Matrix(len(self.subjects),
                                 self.timeslots,
-                                len(self.teachers)+1)
+                                len(self.teachers))
 
         self.model = Nj.Model(
-            [Nj.AllDiffExcept0(row) for row in self.matrix.row],
-            [Nj.AllDiffExcept0(col) for col in self.matrix.col]
+            [Nj.AllDiff(row) for row in self.matrix.row],
+            [Nj.AllDiff(col) for col in self.matrix.col]
+            #[Nj.Gcc(row, cards) for row in self.matrix.row],
+            #[Nj.Gcc(col, cards) for col in self.matrix.col]
         )
 
         self.solver = self.model.load('Mistral')
