@@ -4,4 +4,6 @@ TimeSync Solver
 
 About
 =====
-Coming soon, when I figured it out. See tests for example usage
+See tests for example usage
+
+Quick demo video: https://www.youtube.com/watch?v=-CbCD74Jm-I
